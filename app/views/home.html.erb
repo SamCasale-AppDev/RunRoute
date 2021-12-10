@@ -1,10 +1,10 @@
-<h1>Welcome to RunRoutes!</h1>
+<h1 class="center">Welcome to RunRoutes!</h1>
 <% if session[:user_id] %>
-<h2>Welcome Back <%=@current_user.first_name%>!</h2>
+<h2 class="center">Welcome Back <%=@current_user.first_name%>!</h2>
 
 <p> Hi <%=@current_user.first_name%>! We hope you're day has been productive and safe! In case you were looking to go on a run today, check out the new and excting <a href ="routes">routes</a> that other users have posted!
 <%else%>
-<h2> Welcome!</h2>
+<h2 class="center"> Welcome!</h2>
 <p> Hello! In case you're new here, welcmome to RunRoutes! If you came looking to find a new course, check out the excting <a href ="routes">routes</a> that other users have posted! Looking to post a course your own? Consider <a href="/user_sign_up">Signing Up</a> so that you can post your own!
 
 
@@ -12,4 +12,4 @@
 
 <p> With all of us having been locked inside during the pandemic, we believe that there is no better feeling than lacing up your shoes and going out for a jog (or a crisp walk, we don't judge!) and getting some fresh air! However, with all of us locked in for so long, many of us are asking a very simple question: Where do we go? RunRoutes was designed to provide a simple yet vital service of sharing our own running courses on a public setting in order to inspire others to follow in each other's literal footsteps. By sharing our favorite courses with each other, hopefully we can all find a new route in the process! Who knows, you just might even run into another user along the way</p>
 <p>Additionally, our new <a href ="/photos">photo page</a> allows individuals to upload photos from their routes, although we'd argue that you shouldn't be running and taking pictures at the same time!</p>
-<p>RunRoutes, Get Up and Go!</p>
+<p class="center">RunRoutes, <strong>Get Up and Go!</strong></p>

@@ -80,6 +80,7 @@ class TrailsController < ApplicationController
     
     @url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + @start + "&destination=" + @finish +"&mode=walking&key=AIzaSyCkSAc26ecU7b7czq8Uvl8eBoOrCC55tRg"
     
+    
     @map_url = "https://www.google.com/maps/dir/?api=1&origin=" + @start + "&destination=" + @finish + "&dirflg=w"
     
     @raw_data = open(@url).read
