@@ -1,0 +1,117 @@
+<div>
+  <div>
+    <h1>
+      Photo #<%= @the_photo.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/photos">
+          Go back
+        </a>
+      </div>
+<% if session[:user_id] %>
+      <div>
+        <a href="/delete_photo/<%= @the_photo.id %>">
+          Delete photo
+        </a>
+      </div>
+    </div>
+<%end%>
+    <dl>
+      
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <img src="<%= @the_photo.image %>"></img>
+      </dd>
+        <dt>
+        Caption
+      </dt>
+      <dd>
+        <%= @the_photo.caption %>
+      </dd>
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <%= @the_photo.owner %>
+      </dd>
+
+      <dt>
+        Route
+      </dt>
+      <dd>
+        <a href= "/routes/<%= @the_photo.route %>"><%= @the_photo.route %></a>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_photo.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_photo.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<% if session[:user_id] %>
+<div>
+  <div>
+    <h2>
+      Edit photo
+    </h2>
+
+    <form action="/modify_photo/<%= @the_photo.id %>"  method="post" >
+      <div>
+        <label for="caption_box">
+          Caption
+        </label>
+
+        <textarea id="caption_box" name="query_caption"><%= @the_photo.caption %></textarea>
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_photo.image %>">
+      </div>
+
+      <div>
+        <label for="owner_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_box" name="query_owner" value="<%= @the_photo.owner %>">
+      </div>
+
+      <div>
+        <label for="route_box">
+          Route
+        </label>
+
+        <input type="text" id="route_box" name="query_route" value="<%= @the_photo.route %>">
+      </div>
+
+      <button>
+        Update photo
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<%end%>
