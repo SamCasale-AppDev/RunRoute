@@ -1,0 +1,166 @@
+<div>
+  <div>
+    <h1>
+      List of all Routes
+    </h1>
+  </div>
+</div>
+
+<hr>
+<% if session[:user_id] %>
+<div>
+  <div>
+    <h2>
+      Add a new route
+    </h2>
+
+    <form action="/insert_trail" method="post">
+      <div>
+        <label for="route_box">
+          Route:
+        </label>
+      From Here
+        <input type="text" id="route_box" name="query_route1">
+      To Here
+        <input type="text" id="route_box" name="query_route2">
+
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="disc_box">
+          Course Discription
+        </label>
+
+        <textarea id="disc_box" name="query_disc" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="pr_box">
+          Personal Record (In Seconds)
+        </label>
+
+        <input type="text" id="pr_box" name="query_pr">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Runner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id">
+      </div>
+
+
+
+      <button>
+        Create route
+      </button>
+    </form>
+  </div>
+</div>
+ <%end%>
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Route
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Disc
+        </th>
+
+        <th>
+          Course Length
+        </th>
+        
+        <th>
+          Personal Record (HH:MM:SS)
+        </th>
+
+        <th>
+          Runner
+        </th>
+
+       
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+<%=@first_results%>
+      <% @list_of_trails.each do |a_trail| %>
+      <tr>
+        <td>
+          <%= a_trail.id %>
+        </td>
+
+        <td>
+        ` 
+          <a href=<%= a_trail.route %>>See Route!</a>
+        </td>
+
+        <td>
+          <%= a_trail.name %>
+        </td>
+
+        <td>
+          <%= a_trail.disc %>
+        </td>
+
+        <td>
+          <%= a_trail.length %> Miles
+        </td>
+        
+        <td>
+          <%= Time.at(a_trail.pr.to_i).utc.strftime("%H:%M:%S") %>
+        </td>
+
+        <td>
+          <%= a_trail.owner_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_trail.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_trail.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/routes/<%= a_trail.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

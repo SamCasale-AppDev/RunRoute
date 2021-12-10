@@ -1,0 +1,152 @@
+<div>
+  <div>
+    <h1>
+      Trail #<%= @the_trail.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/routes">
+          Go back
+        </a>
+      </div>
+<% if session[:user_id] %>
+      <div>
+        <a href="/delete_trail/<%= @the_trail.id %>">
+          Delete trail
+        </a>
+      </div>
+    </div>
+<%else%>
+<%end%>
+    <dl>
+      <dt>
+        Route
+      </dt>
+      <dd>
+     <a href ="<%=@the_trail.route%>"><%=@the_trail.route%></a>
+        
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_trail.name %>
+      </dd>
+
+      <dt>
+        Trail Discription
+      </dt>
+      <dd>
+        <%= @the_trail.disc %>
+      </dd>
+
+      <dt>
+        Length
+      </dt>
+      <dd>
+        <%= @the_trail.length %> Miles
+      </dd>
+
+      <dt>
+        Personal Record
+      </dt>
+      <dd>
+        <%= Time.at(@the_trail.pr).utc.strftime("%H:%M:%S") %>
+      </dd>
+
+      <dt>
+        Owner
+      </dt>
+      
+      <dd>
+        <%= @the_trail.owner_id %>
+      </dd>
+
+      <dt>
+        Time to walk
+      </dt>
+      <dd>
+    <%= distance_of_time_in_words(@the_trail.comments_count) %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trail.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trail.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<% if session[:user_id] %>
+<div>
+  <div>
+    <h2>
+      Edit trail
+    </h2>
+
+    <form action="/modify_trail/<%= @the_trail.id %>"  method="post" >
+      <div>
+        <label for="route_box">
+          Route Start and End
+        </label>
+
+        <input type="text" id="route_box" name="query_route1" value="<%= @start %>">
+        <input type="text" id="route_box" name="query_route2" value="<%= @finish %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_trail.name %>">
+      </div>
+
+      <div>
+        <label for="disc_box">
+          Course Discrption
+        </label>
+
+        <textarea id="disc_box" name="query_disc"><%= @the_trail.disc %></textarea>
+      </div>
+
+
+      <div>
+        <label for="pr_box">
+          Personal Record (In Seconds)
+        </label>
+
+        <input type="text" id="pr_box" name="query_pr" value="<%= @the_trail.pr %>">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_trail.owner_id %>">
+      </div>
+
+      
+      <button>
+        Update trail
+      </button>
+    </form>
+  </div>
+</div>
+<%end%>
+
+<hr>
